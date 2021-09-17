@@ -15,19 +15,13 @@ export default function IndexPage() {
 				}}
 			>
 				<ambientLight intensity={2} />
-				<pointLight position={[40, 40, 40]} />
 				<Suspense fallback={null}>
-					<Earth
-						position={[10, 0, 0]}
-						gl={({ gl }) => {
-							return gl;
-						}}
-					/>
+					<Earth position={[5, 0, 0]} />
 				</Suspense>
 				<OrbitControls
 					enableZoom={false}
-					maxPolarAngle={Math.PI}
-					minPolarAngle={Math.PI / 2}
+					maxPolarAngle={Math.PI / 1.9}
+					minPolarAngle={Math.PI / 3}
 				/>
 			</Canvas>
 		</>
