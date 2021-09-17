@@ -1,8 +1,8 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
-import Box from '../components/Box'
 import { Suspense } from 'react'
 import {ACESFilmicToneMapping} from 'three'
+import Earth from '../components/Earth'
 
 export default function BoxesPage() {
   return (
@@ -15,7 +15,7 @@ export default function BoxesPage() {
         <ambientLight intensity={2} />
         <pointLight position={[40, 40, 40]} />
         <Suspense fallback={null}>
-          <Box position={[10, 0, 0]} />
+          <Earth position={[10, 0, 0]} />
         </Suspense>
         <OrbitControls enableZoom={false} maxPolarAngle={Math.PI } minPolarAngle={(Math.PI) / 2}/>
       </Canvas>
