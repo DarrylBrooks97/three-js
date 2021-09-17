@@ -1,29 +1,20 @@
-import { useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { Box as NativeBox } from '@react-three/drei'
+import { useRef } from 'react'
+import { useFrame,useLoader } from '@react-three/fiber'
+import { Sphere } from '@react-three/drei'
+import { TextureLoader } from 'three'
 
 export default function Box(props) {
   const mesh = useRef()
 
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
-
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01))
+  useFrame(() => (mesh.current.rotation.x  += 0.01))
+  const colorMap = useLoader(TextureLoader, 'world.jpg')
 
   return (
-    <NativeBox
-      args={[1, 1, 1]}
-      {...props}
-      ref={mesh}
-      scale={active ? [6, 6, 6] : [5, 5, 5]}
-      onClick={() => setActive(!active)}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => setHover(false)}
+    <Sphere
+    args={[2, 64, 64]}
+    ref={mesh}
     >
-      <meshStandardMaterial
-        attach="material"
-        color={hovered ? '#2b6c76' : '#720b23'}
-      />
-    </NativeBox>
+      <meshStandardMaterial attach="material" map={colorMap} bumpScale={0.05}/>
+    </Sphere>
   )
 }
